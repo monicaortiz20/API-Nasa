@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 
 //const DATABASE_URL = "mongodb://localhost:27017/fakeshop";
-mongoose.connect("mongodb://ac-aehxqhe-shard-00-00.zuh5hvc.mongodb.net:27017/nasa", { useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://monicaortiz20:monica20@nasa.zuh5hvc.mongodb.net/"+'nasa?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true,ssl: true});
 const db = mongoose.connection;
 
 // Eventos O ""Listeners"

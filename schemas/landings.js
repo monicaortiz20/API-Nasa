@@ -56,6 +56,6 @@ const landingsSchema = {
 // Crear el esquema
 const createlandingsSchema = mongoose.Schema(landingsSchema);
 // Crear el modelo --> Colección
-const Landing = mongoose.model('Landing', createlandingsSchema);
+const Landing = mongoose.model('landings', createlandingsSchema);
 
 module.exports = Landing;

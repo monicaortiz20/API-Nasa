@@ -1,4 +1,5 @@
 const express = require('express')
+require('./utils/dbMongo');
 
 //Rutas 
  const landingsApiRoutes = require('./routes/landingsApiRoutes');
@@ -10,7 +11,7 @@ const port = 3000
 app.use(express.json());
 
 //API
-app.use("/api",landingsApiRoutes)
+app.use("/api/astronomy",landingsApiRoutes)
 
 
 app.listen(port, () => {
