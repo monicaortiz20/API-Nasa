@@ -1,0 +1,27 @@
+{
+  "name": "api-nasa",
+  "version": "1.0.0",
+  "description": "Nasa project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1", 
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monicaortiz20/API-Nasa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monicaortiz20/API-Nasa/issues"
+  },
+  "homepage": "https://github.com/monicaortiz20/API-Nasa#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongodb": "^4.8.1",
+    "mongoose": "^6.5.2",
+    "nodemon": "^2.0.19",
+    "request": "^2.88.2"
+  }
+}
