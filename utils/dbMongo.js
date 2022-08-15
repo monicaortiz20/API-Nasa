@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@nasa.zuh5hvc.mongodb.net/`+'nasa?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true,ssl: true});
 const db = mongoose.connection;
 
-// Eventos O ""Listeners"
+// Eventos O "Listeners"
 db.on("error", error => console.log(error));
 db.once("open", () => console.log("connection to MongoDB established"));
 

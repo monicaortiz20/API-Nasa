@@ -1,56 +1,43 @@
 //Esquema para modelo de bbdd Landings
 const mongoose = require('mongoose');
 
-
 const landingsSchema = {
     name: { 
         type: String, 
-        required: true,
-        unique: true
     },
     id: { 
-        type: String, 
-        required: true,
+        type: Number, 
         unique: true 
     },
     nametype: { 
         type: String, 
-        required: true 
     },
     recclass: { 
         type: String, 
-        required: true 
     },
     mass:{
-        type: String,
-        required: true       
+        type: Number,
     },
     fall:{
         type: String,
-        required: true       
     },
     year:{
         type: String,
-        required: true 
     },
     reclat:{
-        type: String
+        type: Number,
     },
     reclong:{
-        type: String
+        type: Number,
     },
     geolocation:{
         type: Object,
         latitude:{
-            type:String,
-            required: true
+            type:Number,
         },
         longitude:{
-            type:String,
-            required: true
-        }
+            type:Number,        }
     }
-
 
 };
 // Crear el esquema

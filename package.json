@@ -4,7 +4,7 @@
   "description": "Nasa project",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1", 
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
   },
   "repository": {
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/monicaortiz20/API-Nasa#readme",
   "dependencies": {
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongodb": "^4.8.1",
     "mongoose": "^6.5.2",

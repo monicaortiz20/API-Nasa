@@ -1,4 +1,4 @@
-let Landing = require('../schemas/landings')
+const Landing = require('../schemas/landings')
 
 const getAllLandings = async () => {
     try{

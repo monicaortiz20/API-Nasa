@@ -1,7 +1,6 @@
 const express = require('express')
 
-//Rutas de productos
-
+//Rutas 
 const landingsApiController= require("../controllers/landingsApiController");
 const landingsApiRouter= express.Router();
 
