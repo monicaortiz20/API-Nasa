@@ -1,9 +1,11 @@
+require('dotenv').config();
 //ESTE FICHERO ABRE LA CONEXIÓN A MONGOOSE
 
 const mongoose = require("mongoose");
 
 //const DATABASE_URL = "mongodb://localhost:27017/fakeshop";
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@nasa.zuh5hvc.mongodb.net/`+'nasa?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true,ssl: true});
+console.log(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@nasa.zuh5hvc.mongodb.net/`+'nasa?retryWrites=true&w=majority');
 const db = mongoose.connection;
 
 // Eventos O "Listeners"

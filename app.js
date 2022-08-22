@@ -15,7 +15,7 @@ const port = 3000
 app.use(express.json());
 
 //API
-app.use("/api/astronomy",landingsApiRoutes)
+app.use("/api",landingsApiRoutes)
 
 //Si la ruta falla
 app.use(manage404);
