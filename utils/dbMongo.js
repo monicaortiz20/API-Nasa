@@ -1,5 +1,6 @@
-require('dotenv').config();
 //ESTE FICHERO ABRE LA CONEXIÓN A MONGOOSE
+//para que .evn pueda ser usado
+require('dotenv').config();
 
 const mongoose = require("mongoose");
 

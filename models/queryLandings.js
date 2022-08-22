@@ -14,6 +14,8 @@ const getAllLandings = async () => {
     }
 }
 
+
+
 //para masa mínima:
 const getLandingsMassMin = async(minMassToNum) => {
     try {
@@ -27,6 +29,18 @@ const getLandingsMassMin = async(minMassToNum) => {
 }
 
 
+//para la masa:
+const getLandingByMass = async (mass) => {
+    try {
+        const getLandingMass = await Landing.find({mass: mass}, "name mass year -_id")
+        return getLandingMass
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 //para conseguir por fecha (desde 1960) - FROM:
 const getLandingFrom = async(dateFrom) => {
     try {
@@ -34,7 +48,7 @@ const getLandingFrom = async(dateFrom) => {
         return landingDateFromTo
 
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
 }
 
@@ -46,7 +60,7 @@ const getLandingTo = async (dateTo) => {
         return landingDateFromTo
 
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
 }
 
@@ -54,11 +68,75 @@ const getLandingTo = async (dateTo) => {
 //para conseguir ambas fechas:
 const getLandingFromTo = async (dateFrom, dateTo) => {
     try {
-        let landingDateFromTo = await Landing.find({year:{$gt:dateFrom, $lt:dateTo}})
+        let landingDateFromTo = await Landing.find({year:{$gt:dateFrom, $lt:dateTo}});
         return landingDateFromTo
 
     } catch (error) {
-        console.error(error)
+        console.error(error);
+    }
+}
+
+
+//para la class:
+const getLandingByClass = async (byClass) => {
+    try {
+  
+        const getLandingsClass = await Landing.find({recclass: byClass}, "name recclass year -_id")
+        return getLandingsClass
+    }
+    catch(error){
+    console.error(error);
+}}
+
+
+//--------- Función Query para el POST ----------//
+const createLanding = async (newLanding) => {
+    try {
+
+        //para crear el nuevo objeto en la colección Landing:
+        let createLanding = new Landing (newLanding);
+        //para que se guarde el objeto que le pasamos en el body
+        let response = await createLanding.save();
+
+        return {
+            Objective: "New object created:",
+            Landing: response
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+//--------- Función Query para el PUT ----------//
+const upDateLandings = async(landing) => {
+    try {
+        let updatingLand = {
+            "id": landing.id,
+            "name": landing.name,
+            "nametype": landing.nametype,
+            "recclass": landing.recclass,
+            "mass": landing.mass,
+            "fall": landing.fall,
+            "year": landing.year,
+            "reclat": landing.reclat,
+            "reclong": landing.reclong,
+            "geolocation": landing.geolocation
+        }
+        //buscamos la landing a modificar por ID
+        let firstLanding = await Landing.findOneAndUpdate({id: landing.id}, newLanding);
+        //para sobreescribir la existente:
+        firstLanding.overwrite(updatingLand)
+        //para guardar la sobreescrita:
+        let rewriteLanding = await firstLanding.save();
+        return {
+            Objective: "Landing updated!",
+            Landing: rewriteLanding
+        }
+
+    } catch (error) {
+        console.log(error);
     }
 }
 
@@ -66,7 +144,12 @@ const getLandingFromTo = async (dateFrom, dateTo) => {
 module.exports = {
     getAllLandings,
     getLandingsMassMin,
+    getLandingByMass,
     getLandingFrom,
     getLandingTo,
-    getLandingFromTo
-};
+    getLandingFromTo,
+    getLandingByClass,
+    createLanding,   //CREATE
+    upDateLandings
+
+}

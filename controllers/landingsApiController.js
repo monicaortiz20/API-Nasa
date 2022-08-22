@@ -2,12 +2,13 @@ const Landing = require('../models/queryLandings');
 
 const getLandings = async (req, res) => {
     let minimum_mass = req.query.minimum_mass
+    //convertimos a num
+    let minMassToNum = parseInt(minimum_mass)
+
     //para fechas
     let dateFrom = req.query.from
     let dateTo = req.query.to
 
-    //convertimos a num
-    let minMassToNum = parseInt(minimum_mass)
 
     //para encontrarlo por masa mínima (200000):
     if (minMassToNum) {
@@ -63,9 +64,53 @@ const getLandings = async (req, res) => {
 }
 
 
+//para encontrarlo por masa:
+const getLandingsByMass = async (req, res) => {
+    try {
+        let getLandingsMass = await Landing.getLandingByMass(req.params.mass)
+        res.status(200).json(getLandingsMass);
+
+    } catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(404).json( {"message":"¡landing not found!"});
+    }
+} 
+
+
+//para encontrarlo por class:
+const getLandingsByClass = async (req, res) => {
+    try {
+        let getLandingsByClass = await Landing.getLandingByClass(req.params.class)
+        res.status(200).json(getLandingsByClass);
+        
+    } catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(404).json( {"message":"¡landing not found!"});
+    }
+}
+
+
+//CREATE Landing (object)
+const createNewLanding = async (req, res) => {
+    try {
+
+        let createLanding = await Landing.createLanding(req.body);
+        res.status(200).json(createLanding)   
+        console.log("Landing created! ", req.body);
+        
+    } catch (error) {
+        console.log(`ERROR: ${error.stack}`)
+        res.status(404).json({ "message": "error creating new landing" });
+    }
+}
+
+
 
 
 
 module.exports = {
-    getLandings
+    getLandings,
+    getLandingsByMass,
+    getLandingsByClass,
+    createNewLanding
     }
