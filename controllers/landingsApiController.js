@@ -1,5 +1,7 @@
 const Landing = require('../models/queryLandings');
 
+
+//GETs Landing 
 const getLandings = async (req, res) => {
     let minimum_mass = req.query.minimum_mass
     //convertimos a num
@@ -94,8 +96,8 @@ const getLandingsByClass = async (req, res) => {
 const createNewLanding = async (req, res) => {
     try {
 
-        let createLanding = await Landing.createLanding(req.body);
-        res.status(200).json(createLanding)   
+        let creatingLand = await Landing.createLanding(req.body);
+        res.status(200).json(creatingLand)   
         console.log("Landing created! ", req.body);
         
     } catch (error) {
@@ -105,12 +107,38 @@ const createNewLanding = async (req, res) => {
 }
 
 
+//UPDATE Landing (object)
+const updateLanding = async (req, res) => {
+    try {
+        let updatingLand = await Landing.upDateLandings(req.body);
+        res.send("Landing updated!", updatingLand);
+
+    } catch (error) {
+        console.log(`ERROR: ${error.stack}`)
+        res.status(404).json({ "message": "landing not updated" });
+    }
+}
 
 
+//DELETE Landing (object)
+const deleteLanding = async (req, res) => {
+    let deleteLand = req.params.id;
+    try {
+        let deletingLand = await Landing.deleteLandings(deleteLand);
+        res.send("Landing deleted", deletingLand)
+
+        
+    } catch (error) {
+        console.log(`ERROR: ${error.stack}`)
+        res.status(404).json({ "message": "landing not deleted" });
+    }
+}
 
 module.exports = {
     getLandings,
     getLandingsByMass,
     getLandingsByClass,
-    createNewLanding
+    createNewLanding,
+    updateLanding,
+    deleteLanding
     }
