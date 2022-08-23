@@ -92,7 +92,7 @@ const getLandingsByClass = async (req, res) => {
 }
 
 
-//CREATE Landing (object)
+//CREATE Landing (object) - POST
 const createNewLanding = async (req, res) => {
     try {
 
@@ -110,8 +110,9 @@ const createNewLanding = async (req, res) => {
 //UPDATE Landing (object)
 const updateLanding = async (req, res) => {
     try {
-        let updatingLand = await Landing.upDateLandings(req.body);
-        res.send("Landing updated!", updatingLand);
+        await Landing.upDateLandings(req.body);
+        console.log("Esto es req.body de la func UPDATE", req.body);
+        res.send("Landing updated!");
 
     } catch (error) {
         console.log(`ERROR: ${error.stack}`)
@@ -122,10 +123,10 @@ const updateLanding = async (req, res) => {
 
 //DELETE Landing (object)
 const deleteLanding = async (req, res) => {
-    let deleteLand = req.params.id;
     try {
-        let deletingLand = await Landing.deleteLandings(deleteLand);
-        res.send("Landing deleted", deletingLand)
+        let deleteLand = req.params.id;
+        await Landing.deleteLandings(deleteLand);
+        res.send("Landing deleted")
 
         
     } catch (error) {

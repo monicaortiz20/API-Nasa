@@ -97,6 +97,7 @@ const createLanding = async (newLanding) => {
         let createLanding = new Landing (newLanding);
         //para que se guarde el objeto que le pasamos en el body
         let response = await createLanding.save();
+        console.log("La API registra este objeto:",response);
 
         return {
             Objective: "New object created:",
@@ -104,7 +105,7 @@ const createLanding = async (newLanding) => {
         }
 
     } catch (error) {
-        console.error(error);
+        console.log(`ERROR:${error}`)
     }
 }
 
@@ -112,7 +113,7 @@ const createLanding = async (newLanding) => {
 //--------- Función Query para el PUT ----------//
 const upDateLandings = async(landing) => {
     try {
-        let updatingLand = {
+        const newLand = {
             "id": landing.id,
             "name": landing.name,
             "nametype": landing.nametype,
@@ -124,15 +125,17 @@ const upDateLandings = async(landing) => {
             "reclong": landing.reclong,
             "geolocation": landing.geolocation
         }
+        console.log("Este es el objeto newLand: ", newLand);
         //buscamos la landing a modificar por ID
-        let firstLanding = await Landing.findOneAndUpdate({id: landing.id}, newLanding);
+        let oldLand = await Landing.findOneAndUpdate({id: landing.id}, newLand);
         //para sobreescribir la existente:
-        firstLanding.overwrite(updatingLand)
+        oldLand.overwrite(newLand)
+        console.log("Este es el objeto oldLand despues de sobreescribirse", oldLand);
         //para guardar la sobreescrita:
-        let rewriteLanding = await firstLanding.save();
+        await oldLand.save();
         return {
             Objective: "Landing updated!",
-            Landing: rewriteLanding
+            Landing: oldLand
         }
 
     } catch (error) {
@@ -146,7 +149,7 @@ const deleteLandings = async (landing) => {
     try {
         let response = await Landing.deleteOne({id:landing.id});
         console.log("Landing eliminated",response);
-        return `Landing with id ${landing.id} has been deleted`
+        return `Landing with id ${landing.id} has been deleted.`
 
     } catch (error) {
         console.log(`ERROR:${error}`)
@@ -164,7 +167,7 @@ module.exports = {
     getLandingTo,
     getLandingFromTo,
     getLandingByClass,
-    createLanding,   //POST
-    upDateLandings,  //PUT
-    deleteLandings   //DELETE
+    createLanding,
+    upDateLandings,
+    deleteLandings
 }
