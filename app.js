@@ -7,7 +7,8 @@ const landingsApiRoutes = require('./routes/landingsApiRoutes');
 const neasApiRoutes = require('./routes/neasApiRoutes');
 
 //middleware 404
-const manage404 = require('./middlewares/error404')
+const manage404 = require('./middlewares/error404');
+const usersApiRouter = require('./routes/usersApiRoutes');
 
 const app = express()
 const port = 3000
@@ -18,6 +19,7 @@ app.use(express.json());
 //API
 app.use("/api",landingsApiRoutes)
 app.use("/api",neasApiRoutes)
+app.use("/api",usersApiRouter)
 
 //Si la ruta falla
 app.use(manage404);
