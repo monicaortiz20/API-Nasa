@@ -24,7 +24,7 @@ const getLandings = async (req, res) => {
         }
         catch (error) {
             console.log(`ERROR: ${error.stack}`);
-            res.status(404).json( {"message":"¡landing not found!"}); 
+            res.status(404).json( {"message":"landing not found!"}); 
         }
 
         //por fecha (desde 1960)
@@ -35,7 +35,7 @@ const getLandings = async (req, res) => {
 
         } catch (error) {
             console.log(`ERROR: ${error.stack}`);
-            res.status(404).json( {"message":"¡landing not found!"});
+            res.status(404).json( {"message":"landing not found!"});
         }
 
         //por fecha (hasta 1990)
@@ -46,7 +46,7 @@ const getLandings = async (req, res) => {
 
         } catch (error) {
             console.log(`ERROR: ${error.stack}`);
-            res.status(404).json( {"message":"¡landing not found!"});
+            res.status(404).json( {"message":"landing not found!"});
         }
 
     //para encontrar meteoritos caídos por fecha comprendida entre 1960 & 1990:
@@ -57,7 +57,7 @@ const getLandings = async (req, res) => {
 
         } catch (error) {
             console.log(`ERROR: ${error.stack}`);
-            res.status(404).json( {"message":"¡landing not found!"}); 
+            res.status(404).json( {"message":"landing not found!"}); 
         }
     }else {
         const landings = await Landing.getAllLandings();
@@ -74,7 +74,7 @@ const getLandingsByMass = async (req, res) => {
 
     } catch (error) {
         console.log(`ERROR: ${error.stack}`);
-        res.status(404).json( {"message":"¡landing not found!"});
+        res.status(404).json( {"message":"landing not found!"});
     }
 } 
 
@@ -87,7 +87,7 @@ const getLandingsByClass = async (req, res) => {
         
     } catch (error) {
         console.log(`ERROR: ${error.stack}`);
-        res.status(404).json( {"message":"¡landing not found!"});
+        res.status(404).json( {"message":"landing not found!"});
     }
 }
 

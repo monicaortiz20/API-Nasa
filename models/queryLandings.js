@@ -97,7 +97,6 @@ const createLanding = async (newLanding) => {
         let createLanding = new Landing (newLanding);
         //para que se guarde el objeto que le pasamos en el body
         let response = await createLanding.save();
-        console.log("La API registra este objeto:",response);
 
         return {
             Objective: "New object created:",
@@ -125,12 +124,10 @@ const upDateLandings = async(landing) => {
             "reclong": landing.reclong,
             "geolocation": landing.geolocation
         }
-        console.log("Este es el objeto newLand: ", newLand);
         //buscamos la landing a modificar por ID
         let oldLand = await Landing.findOneAndUpdate({id: landing.id}, newLand);
         //para sobreescribir la existente:
-        oldLand.overwrite(newLand)
-        console.log("Este es el objeto oldLand despues de sobreescribirse", oldLand);
+        oldLand.overwrite(newLand);
         //para guardar la sobreescrita:
         await oldLand.save();
         return {

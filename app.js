@@ -4,6 +4,7 @@ require('./utils/dbMongo');
 
 //Rutas 
 const landingsApiRoutes = require('./routes/landingsApiRoutes');
+const neasApiRoutes = require('./routes/neasApiRoutes');
 
 //middleware 404
 const manage404 = require('./middlewares/error404')
@@ -16,6 +17,7 @@ app.use(express.json());
 
 //API
 app.use("/api",landingsApiRoutes)
+app.use("/api",neasApiRoutes)
 
 //Si la ruta falla
 app.use(manage404);
