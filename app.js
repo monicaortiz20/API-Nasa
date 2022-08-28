@@ -5,10 +5,10 @@ require('./utils/dbMongo');
 //Rutas 
 const landingsApiRoutes = require('./routes/landingsApiRoutes');
 const neasApiRoutes = require('./routes/neasApiRoutes');
+const usersApiRouter = require('./routes/usersApiRoutes');
 
 //middleware 404
 const manage404 = require('./middlewares/error404');
-const usersApiRouter = require('./routes/usersApiRoutes');
 
 const app = express()
 const port = 3000

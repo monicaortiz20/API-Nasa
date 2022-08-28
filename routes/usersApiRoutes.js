@@ -5,6 +5,6 @@ const usersApiRouter= express.Router();
 
 
 //API neas:
-usersApiRouter.get("/users",usersApiController.getUsers);
+usersApiRouter.post("/users/create",usersApiController.createUser);
 
 module.exports= usersApiRouter;

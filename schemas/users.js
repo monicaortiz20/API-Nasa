@@ -42,6 +42,6 @@ const userSchema = {
 }
 
 const createUserSchema = mongoose.Schema(userSchema);
-const Users = mongoose.model('neas', createUserSchema);
+const Users = mongoose.model('users', createUserSchema);
 
 module.exports = Users;
